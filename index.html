@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Climbing Gym App</title>
+        <style>
+            /* Basic CSS for visibility */
+            #auth-section { display: block; }
+            #app-section { display: none; } /* Initially hidden */
+
+            #auth-section.hidden { display: none; }
+            #app-section.visible { display: block; }
+
+            body { font-family: sans-serif; margin: 20px; }
+            input, button { padding: 10px; margin: 5px 0; display: block; width: 250px; }
+            #recaptcha-container { margin: 10px 0; }
+            #user-info { border: 1px solid #ccc; padding: 15px; margin-top: 20px; background-color: #f9f9f9; }
+        </style>
+    </head>
+    <body>
+        <!-- Authentication Section (initially visible, hidden when logged in) -->
+        <div id="auth-section">
+            <h2>Sign In / Sign Up</h2>
+            <div id="recaptcha-container"></div>
+            <input type="tel" id="phoneNumber" placeholder="Enter phone number (e.g., +11234567890)">
+            <button id="sendCode">Send Verification Code</button>
+
+            <input type="text" id="verificationCode" placeholder="Enter verification code">
+            <button id="verifyCode">Verify Code</button>
+
+            <p id="authStatus"></p>
+        </div>
+
+        <!-- Application Section (initially hidden, visible when logged in) -->
+        <div id="app-section">
+            <h1>Welcome to your Climbing Gym App!</h1>
+            <div id="user-info">
+                <h3>Your Profile</h3>
+                <p><strong>Display Name:</strong> <span id="userDisplayName"></span></p>
+                <p><strong>Phone:</strong> <span id="userPhoneNumber"></span></p>
+                <p><strong>Loyalty Points:</strong> <span id="userLoyaltyPoints"></span></p>
+                <p><strong>Membership Status:</strong> <span id="userMembershipStatus"></span> (<span id="userMembershipType"></span>)</p>
+                <p><strong>Home Gym:</strong> <span id="userHomeGym"></span></p>
+            </div>
+
+            <button id="logoutButton">Log Out</button>
+            <button id="updatePointsButton">Add 10 Loyalty Points</button>
+        </div>
+
+        <!-- Firebase Initialization Script -->
+        <script type="module">
+            // ... (your Firebase initialization script as corrected previously) ...
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+            import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+            import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+            import { getStorage } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyB-ldg94e902HITajU_898U5XVmxw0lOFY",
+                authDomain: "faapp-ddcff.firebaseapp.com",
+                projectId: "faapp-ddcff",
+                storageBucket: "faapp-ddcff.firebasestorage.app",
+                messagingSenderId: "854580718964",
+                appId: "1:854580718964:web:7177891b9489abdd311021",
+                measurementId: "G-JC2Q2LEH8R"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            window.auth = getAuth(app);
+            window.firestore = getFirestore(app);
+            window.storage = getStorage(app);
+        </script>
+
+        <!-- Your application logic modules -->
+        <script type="module" src="./auth.js"></script>
+        <script type="module" src="./firestore-users.js"></script>
+
+    </body>
+</html>
