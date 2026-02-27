@@ -3,7 +3,7 @@
     <head>
         <title>Climbing Gym App</title>
         <style>
-            /* (Your existing CSS here) */
+            /* (existing CSS here) */
             #auth-section { display: block; }
             #app-section { display: none; }
             #auth-section.hidden { display: none; }
@@ -52,7 +52,7 @@
             <button id="updatePointsButton">Add 10 Loyalty Points</button>
         </div>
 
-        <!-- Firebase Initialization Script (as corrected previously) -->
+        <!-- Firebase Initialization Script -->
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
             import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
@@ -77,7 +77,7 @@
             window.storage = getStorage(app);
         </script>
 
-        <!-- Your application logic modules -->
+        <!-- Application logic modules -->
         <script type="module" src="./auth.js"></script>
         <script type="module" src="./firestore-users.js"></script>
 
