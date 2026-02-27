@@ -59,15 +59,7 @@
             import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
             import { getStorage } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyB-ldg94e902HITajU_898U5XVmxw0lOFY",
-                authDomain: "faapp-ddcff.firebaseapp.com",
-                projectId: "faapp-ddcff",
-                storageBucket: "faapp-ddcff.firebasestorage.app",
-                messagingSenderId: "854580718964",
-                appId: "1:854580718964:web:7177891b9489abdd311021",
-                measurementId: "G-JC2Q2LEH8R"
-            };
+            import { firebaseConfig } from './config.js';
 
             const app = initializeApp(firebaseConfig);
             console.log("Firebase app initialized successfully:", app);
