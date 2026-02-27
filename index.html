@@ -3,21 +3,19 @@
     <head>
         <title>Climbing Gym App</title>
         <style>
-            /* Basic CSS for visibility */
+            /* (Your existing CSS here) */
             #auth-section { display: block; }
-            #app-section { display: none; } /* Initially hidden */
-
+            #app-section { display: none; }
             #auth-section.hidden { display: none; }
             #app-section.visible { display: block; }
-
             body { font-family: sans-serif; margin: 20px; }
-            input, button { padding: 10px; margin: 5px 0; display: block; width: 250px; }
+            input, button, select { padding: 10px; margin: 5px 0; display: block; width: 250px; }
             #recaptcha-container { margin: 10px 0; }
             #user-info { border: 1px solid #ccc; padding: 15px; margin-top: 20px; background-color: #f9f9f9; }
         </style>
     </head>
     <body>
-        <!-- Authentication Section (initially visible, hidden when logged in) -->
+        <!-- Authentication Section -->
         <div id="auth-section">
             <h2>Sign In / Sign Up</h2>
             <div id="recaptcha-container"></div>
@@ -30,7 +28,7 @@
             <p id="authStatus"></p>
         </div>
 
-        <!-- Application Section (initially hidden, visible when logged in) -->
+        <!-- Application Section -->
         <div id="app-section">
             <h1>Welcome to your Climbing Gym App!</h1>
             <div id="user-info">
@@ -40,15 +38,22 @@
                 <p><strong>Loyalty Points:</strong> <span id="userLoyaltyPoints"></span></p>
                 <p><strong>Membership Status:</strong> <span id="userMembershipStatus"></span> (<span id="userMembershipType"></span>)</p>
                 <p><strong>Home Gym:</strong> <span id="userHomeGym"></span></p>
+
+                <h4>Choose Your Home Gym:</h4>
+                <select id="homeGymSelect">
+                    <option value="">-- Select a Gym --</option>
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+                <button id="saveHomeGymButton">Save Home Gym</button>
+                <p id="homeGymStatus"></p>
             </div>
 
             <button id="logoutButton">Log Out</button>
             <button id="updatePointsButton">Add 10 Loyalty Points</button>
         </div>
 
-        <!-- Firebase Initialization Script -->
+        <!-- Firebase Initialization Script (as corrected previously) -->
         <script type="module">
-            // ... (your Firebase initialization script as corrected previously) ...
             import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
             import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
             import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
@@ -65,6 +70,8 @@
             };
 
             const app = initializeApp(firebaseConfig);
+            console.log("Firebase app initialized successfully:", app);
+
             window.auth = getAuth(app);
             window.firestore = getFirestore(app);
             window.storage = getStorage(app);
