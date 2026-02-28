@@ -1,36 +1,155 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Climbing Gym App</title>
+        <title>First Ascent Climbing - Login</title>
         <style>
-            /* (existing CSS here) */
+            /* First Ascent Color Palette (inspired by faclimbing.com) */
+            :root {
+                --fa-dark-teal: #004D60; /* Main brand color */
+                --fa-orange-accent: #FF6B00; /* Accent color, buttons */
+                --fa-text-dark: #333333;
+                --fa-background-light: #F8F8F8; /* Light gray background */
+                --fa-white: #FFFFFF;
+                --fa-border-light: #CCCCCC;
+            }
+
+            body {
+                font-family: 'Open Sans', sans-serif; /* A common, clean font similar to their site */
+                margin: 0;
+                padding: 20px;
+                background-color: var(--fa-background-light);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                color: var(--fa-text-dark);
+            }
+
+            .login-container {
+                background-color: var(--fa-white);
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .logo-container img {
+                max-width: 150px; /* Adjust size as needed */
+                height: auto;
+                margin-bottom: 25px;
+            }
+
+            h2 {
+                color: var(--fa-dark-teal); /* First Ascent dark teal for the title */
+                margin-bottom: 20px;
+                font-size: 2em;
+                font-weight: 700;
+            }
+
+            p {
+                margin-bottom: 20px;
+                line-height: 1.5;
+            }
+
+            input[type="tel"],
+            input[type="text"] {
+                width: calc(100% - 24px); /* Account for padding and border */
+                padding: 12px;
+                margin-bottom: 15px;
+                border: 1px solid var(--fa-border-light);
+                border-radius: 4px;
+                font-size: 1em;
+                color: var(--fa-text-dark);
+            }
+
+            button {
+                background-color: var(--fa-orange-accent); /* First Ascent orange for primary actions */
+                color: var(--fa-white);
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                font-size: 1.1em;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.1s ease;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button:hover {
+                background-color: #e55a00; /* Slightly darker orange on hover */
+                transform: translateY(-1px);
+            }
+
+            button:active {
+                transform: translateY(0);
+            }
+
+            #authStatus {
+                margin-top: 15px;
+                color: var(--fa-text-dark);
+                font-size: 0.9em;
+                min-height: 1.5em; /* Prevent layout shift */
+            }
+
+            #recaptcha-container {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            /* UI Visibility (from previous step) */
             #auth-section { display: block; }
             #app-section { display: none; }
             #auth-section.hidden { display: none; }
             #app-section.visible { display: block; }
-            body { font-family: sans-serif; margin: 20px; }
-            input, button, select { padding: 10px; margin: 5px 0; display: block; width: 250px; }
-            #recaptcha-container { margin: 10px 0; }
-            #user-info { border: 1px solid #ccc; padding: 15px; margin-top: 20px; background-color: #f9f9f9; }
+
+            /* App Section Styling (optional, feel free to customize) */
+            #app-section {
+                background-color: var(--fa-white);
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+                width: 100%;
+                margin: 20px auto;
+            }
+            #app-section h1 { color: var(--fa-dark-teal); font-size: 2.2em; margin-bottom: 20px;}
+            #user-info { border: 1px solid var(--fa-border-light); padding: 20px; border-radius: 5px; margin-top: 20px; background-color: var(--fa-background-light); }
+            #user-info h3 { color: var(--fa-orange-accent); margin-top: 0; }
+            #app-section button { background-color: var(--fa-dark-teal); margin-top: 15px; width: auto; padding: 10px 25px; display: inline-block; margin-right: 10px;}
+            #app-section button:hover { background-color: #003a49; } /* Darker teal on hover */
+
         </style>
+        <!-- Google Fonts - Open Sans (similar to their site font) -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <!-- Authentication Section -->
         <div id="auth-section">
-            <h2>Sign In / Sign Up</h2>
-            <div id="recaptcha-container"></div>
-            <input type="tel" id="phoneNumber" placeholder="Enter phone number (e.g., +11234567890)">
-            <button id="sendCode">Send Verification Code</button>
+            <div class="login-container">
+                <div class="logo-container">
+                    <img src="FA-foundation.png" alt="First Ascent Climbing Logo">
+                </div>
+                <h2>First Ascent Climbing and Fitness</h2>
+                <p>Sign in with your phone number to access your account.</p>
 
-            <input type="text" id="verificationCode" placeholder="Enter verification code">
-            <button id="verifyCode">Verify Code</button>
+                <div id="recaptcha-container"></div>
+                <input type="tel" id="phoneNumber" placeholder="Enter phone number (e.g., +11234567890)">
+                <button id="sendCode">Send Verification Code</button>
 
-            <p id="authStatus"></p>
+                <input type="text" id="verificationCode" placeholder="Enter verification code">
+                <button id="verifyCode">Verify Code</button>
+
+                <p id="authStatus"></p>
+            </div>
         </div>
 
-        <!-- Application Section -->
+        <!-- Application Section (your existing app content) -->
         <div id="app-section">
-            <h1>Welcome to your Climbing Gym App!</h1>
+            <h1>Welcome to First Ascent!</h1>
             <div id="user-info">
                 <h3>Your Profile</h3>
                 <p><strong>Display Name:</strong> <span id="userDisplayName"></span></p>
@@ -42,7 +161,6 @@
                 <h4>Choose Your Home Gym:</h4>
                 <select id="homeGymSelect">
                     <option value="">-- Select a Gym --</option>
-                    <!-- Options will be populated by JavaScript -->
                 </select>
                 <button id="saveHomeGymButton">Save Home Gym</button>
                 <p id="homeGymStatus"></p>
@@ -59,7 +177,15 @@
             import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
             import { getStorage } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
 
-            import { firebaseConfig } from './config.js';
+            const firebaseConfig = {
+                apiKey: "AIzaSyB-ldg94e902HITajU_898U5XVmxw0lOFY",
+                authDomain: "faapp-ddcff.firebaseapp.com",
+                projectId: "faapp-ddcff",
+                storageBucket: "faapp-ddcff.firebasestorage.app",
+                messagingSenderId: "854580718964",
+                appId: "1:854580718964:web:7177891b9489abdd311021",
+                measurementId: "G-JC2Q2LEH8R"
+            };
 
             const app = initializeApp(firebaseConfig);
             console.log("Firebase app initialized successfully:", app);
@@ -69,9 +195,8 @@
             window.storage = getStorage(app);
         </script>
 
-        <!-- Application logic modules -->
+        <!-- Your application logic modules -->
         <script type="module" src="./auth.js"></script>
         <script type="module" src="./firestore-users.js"></script>
-
     </body>
 </html>
